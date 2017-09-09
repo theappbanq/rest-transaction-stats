@@ -2,11 +2,8 @@ package com.devlord.reststatsbackend.web.services;
 
 import com.devlord.reststatsbackend.models.Transaction;
 import com.devlord.reststatsbackend.services.StatService;
-import java.net.URI;
-import java.net.URISyntaxException;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +23,7 @@ public class TransactionController {
     StatService service;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity handleTransaction(@Valid @RequestBody Transaction tran) throws URISyntaxException {
+    public ResponseEntity handleTransaction(@Valid @RequestBody Transaction tran) {
         if (service.updateStats(tran)) {
             return ResponseEntity.status(HttpStatus.CREATED).build();
         }
